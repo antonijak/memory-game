@@ -6,10 +6,14 @@ import ace from './assets/ace.jpg';
 import earphones from './assets/earphones.jpg';
 import smiley from './assets/smiley.jpg';
 import umbrella from './assets/umbrella.jpg';
+import cat from './assets/cat.jpg';
+import rose from './assets/rose.jpg';
+import question from './assets/question.jpg';
+import baloon from './assets/baloon.jpg';
 
 class App extends Component {
 	state = {
-		cards: [ace, earphones, smiley, umbrella],
+		cards: [ace, earphones, smiley, umbrella, cat, rose, baloon, question],
 		stack: [],
 		open: {
 			first: { picture: '', card: '' },
@@ -18,10 +22,11 @@ class App extends Component {
 		score: 0
 	};
 
-	createRandomStack = max => {
+	createRandomStack = numberOfPictures => {
 		// create array of random numbers starting from 0 to max
 
 		let arr = [];
+		const max = numberOfPictures * 2;
 
 		for (let i = 0; arr.length < max; i++) {
 			let num = Math.floor(Math.random() * max);
@@ -29,7 +34,9 @@ class App extends Component {
 		}
 		//return only numbers 0-3 in the array
 
-		return arr.map(num => (num > 3 ? num - 4 : num));
+		return arr.map(num =>
+			num > numberOfPictures - 1 ? num - numberOfPictures : num
+		);
 	};
 
 	componentDidMount = () => {
