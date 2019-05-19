@@ -1,0 +1,27 @@
+.game {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__card {
+    margin: 1rem;
+    border: 1rem solid rgb(191, 191, 191);
+    box-shadow: 2px 2px 2px grey;
+    border-radius: 5px;
+    display: flex;
+    transition: box-shadow 0.2s linear;
+    background: rgb(191, 191, 191);
+
+    &__image {
+      width: 300px;
+      height: 300px;
+
+      &--hidden {
+        visibility: hidden;
+      }
+    }
+
+    &:hover {
+      box-shadow: 7px 7px 7px grey;
+    }
+  }
+}
