@@ -43,6 +43,16 @@ $primary: rgb(191, 191, 191);
 		justify-content: space-between;
 		margin: 0 auto;
 		font-family: 'Roboto', sans-serif;
+		@media (min-width: 2000px) {
+			width: 1500px;
+		}
+		@media (max-width: 600px) {
+			display: grid;
+			grid-template-areas:
+				'title title'
+				'moves score';
+			grid-row-gap: 1rem;
+		}
 
 		&__title {
 			display: inline-block;
@@ -52,6 +62,10 @@ $primary: rgb(191, 191, 191);
 			font-family: 'Roboto', sans-serif;
 			font-size: 3rem;
 			letter-spacing: 2px;
+			@media (max-width: 600px) {
+				font-size: 2rem;
+				grid-area: title;
+			}
 		}
 
 		&__moves,
@@ -61,9 +75,15 @@ $primary: rgb(191, 191, 191);
 			color: gray;
 			margin: 0;
 			font-family: 'Roboto Mono', monospace;
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
 		}
 
 		&__moves {
+			@media (max-width: 600px) {
+				grid-area: moves;
+			}
 			&__number {
 				color: white;
 				background: rgba(128, 128, 128, 0.747);
@@ -77,6 +97,10 @@ $primary: rgb(191, 191, 191);
 		}
 
 		&__score {
+			@media (max-width: 600px) {
+				grid-area: score;
+			}
+
 			&__number {
 				color: white;
 				background: rgba(255, 0, 0, 0.247);
@@ -130,13 +154,28 @@ $primary: rgb(191, 191, 191);
 		display: flex;
 		transition: box-shadow 0.2s linear;
 		background: rgb(191, 191, 191);
+		@media (max-width: 1440px) {
+			margin: 0.5rem;
+		}
+		@media (max-width: 600px) {
+			width: 40%;
+			height: 40%;
+		}
 
 		&__image {
 			width: 200px;
 			height: 200px;
+			@media (min-width: 2000px) {
+				width: 300px;
+				height: 300px;
+			}
 			@media (max-width: 1440px) {
 				width: 150px;
 				height: 150px;
+			}
+			@media (max-width: 600px) {
+				width: 100%;
+				height: 100%;
 			}
 
 			&--hidden {
@@ -155,15 +194,24 @@ $primary: rgb(191, 191, 191);
 		border: 1rem solid transparent;
 		box-shadow: none;
 		background: transparent;
-
 		cursor: auto;
+		@media (max-width: 600px) {
+			display: none;
+		}
 
 		div {
 			width: 200px;
 			height: 200px;
+			@media (min-width: 2000px) {
+				width: 300px;
+				height: 300px;
+			}
 			@media (max-width: 1440px) {
 				width: 150px;
 				height: 150px;
+			}
+			@media (max-width: 600px) {
+				width: 100%;
 			}
 		}
 	}
