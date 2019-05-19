@@ -134,6 +134,10 @@ $primary: rgb(191, 191, 191);
 		&__image {
 			width: 200px;
 			height: 200px;
+			@media (max-width: 1440px) {
+				width: 150px;
+				height: 150px;
+			}
 
 			&--hidden {
 				visibility: hidden;
@@ -157,6 +161,10 @@ $primary: rgb(191, 191, 191);
 		div {
 			width: 200px;
 			height: 200px;
+			@media (max-width: 1440px) {
+				width: 150px;
+				height: 150px;
+			}
 		}
 	}
 }
