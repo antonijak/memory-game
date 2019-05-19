@@ -12,6 +12,10 @@ $primary: rgb(191, 191, 191);
 	text-align: center;
 	font-size: 5rem;
 	color: red;
+	@media (max-width: 600px) {
+		margin-top: 3rem;
+		font-size: 3rem;
+	}
 
 	@keyframes pulse {
 		0%,
