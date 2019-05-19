@@ -199,6 +199,9 @@ $primary: rgb(191, 191, 191);
 		box-shadow: none;
 		background: transparent;
 		cursor: auto;
+		@media (max-width: 1440px) {
+			margin: 0.5rem;
+		}
 		@media (max-width: 600px) {
 			display: none;
 		}
