@@ -20,7 +20,8 @@ class App extends Component {
 			second: { picture: '', card: '' }
 		},
 		score: 0,
-		moves: 0
+		moves: 0,
+		cls: 'info__text__score__number'
 	};
 
 	createRandomStack = numberOfPictures => {
@@ -58,8 +59,15 @@ class App extends Component {
 				stack: this.state.stack.map(item =>
 					item === picture ? (item = 'x') : item
 				),
-				score: this.state.score + 1
+				score: this.state.score + 1,
+				cls: 'info__text__score__number info__text__score__number--black'
 			});
+
+			setTimeout(() => {
+				this.setState({
+					cls: 'info__text__score__number'
+				});
+			}, 500);
 		}, 500);
 	};
 
@@ -115,16 +123,26 @@ class App extends Component {
 	};
 
 	render() {
-		const { stack, cards, open, score, moves } = this.state;
+		const { stack, cards, open, score, moves, cls } = this.state;
 		const { picture: firstPicture, card: firstCard } = open.first;
 		const { picture: secondPicture, card: secondCard } = open.second;
 
 		return (
 			<div className="App">
 				<div className="info">
-					<p>Score: {score}</p>
-					<p>Moves: {moves}</p>
+					<div className="info__text">
+						<p className="info__text__moves">
+							Moves <span className="info__text__moves__number">{moves}</span>
+						</p>
+						<h1 className="info__text__title">Memory Game</h1>
+						<p className="info__text__score">
+							Score <span className={cls}>{score}</span>
+						</p>
+					</div>
 				</div>
+
+				{score === 8 && <div className="congrats">Congratulations!</div>}
+
 				<div className="game" onClick={this.closeAllCards} id="game">
 					{stack.map((picture, i) => {
 						const card = i + 1;
@@ -138,7 +156,7 @@ class App extends Component {
 									picture !== 'x' && this.flipACard(picture, card)
 								}
 							>
-								{picture !== 'x' && (
+								{picture !== 'x' ? (
 									<img
 										className={
 											(firstPicture === picture && firstCard === card) ||
@@ -149,6 +167,8 @@ class App extends Component {
 										src={cards[picture]}
 										alt={`card${picture}`}
 									/>
+								) : (
+									<div />
 								)}
 							</div>
 						);
