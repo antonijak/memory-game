@@ -25,4 +25,14 @@
 			cursor: pointer;
 		}
 	}
+
+	.empty-slot {
+		margin: 1rem;
+		border-color: transparent;
+		box-shadow: none;
+		background: transparent;
+		width: 300px;
+		height: 300px;
+		cursor: auto;
+	}
 }

@@ -46,7 +46,9 @@ class App extends Component {
 	givePoint = picture => {
 		setTimeout(() => {
 			this.setState({
-				stack: this.state.stack.filter(item => item !== picture),
+				stack: this.state.stack.map(item =>
+					item === picture ? (item = 'x') : item
+				),
 				score: this.state.score + 1
 			});
 		}, 500);
@@ -98,19 +100,25 @@ class App extends Component {
 						return (
 							<div
 								key={card}
-								className="game__card"
-								onClick={() => this.handleClick(picture, card)}
+								className={
+									picture === 'x' ? 'game__card empty-slot' : 'game__card'
+								}
+								onClick={() =>
+									picture !== 'x' && this.handleClick(picture, card)
+								}
 							>
-								<img
-									className={
-										(firstPicture === picture && firstCard === card) ||
-										(secondPicture === picture && secondCard === card)
-											? 'game__card__image'
-											: 'game__card__image game__card__image--hidden'
-									}
-									src={cards[picture]}
-									alt={`card${picture}`}
-								/>
+								{picture !== 'x' && (
+									<img
+										className={
+											(firstPicture === picture && firstCard === card) ||
+											(secondPicture === picture && secondCard === card)
+												? 'game__card__image'
+												: 'game__card__image game__card__image--hidden'
+										}
+										src={cards[picture]}
+										alt={`card${picture}`}
+									/>
+								)}
 							</div>
 						);
 					})}
