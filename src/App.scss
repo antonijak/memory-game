@@ -1,6 +1,7 @@
 .game {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 
 	&__card {
 		margin: 1rem;
@@ -12,8 +13,8 @@
 		background: rgb(191, 191, 191);
 
 		&__image {
-			width: 300px;
-			height: 300px;
+			width: 200px;
+			height: 200px;
 
 			&--hidden {
 				visibility: hidden;
@@ -31,8 +32,8 @@
 		border-color: transparent;
 		box-shadow: none;
 		background: transparent;
-		width: 300px;
-		height: 300px;
+		width: 200px;
+		height: 200px;
 		cursor: auto;
 	}
 }

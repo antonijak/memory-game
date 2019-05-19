@@ -19,7 +19,8 @@ class App extends Component {
 			first: { picture: '', card: '' },
 			second: { picture: '', card: '' }
 		},
-		score: 0
+		score: 0,
+		moves: 0
 	};
 
 	createRandomStack = numberOfPictures => {
@@ -32,7 +33,8 @@ class App extends Component {
 			let num = Math.floor(Math.random() * max);
 			!arr.includes(num) && arr.push(num);
 		}
-		//return only numbers 0-3 in the array
+
+		//return only numbers 0-numberOfPictures in the array
 
 		return arr.map(num =>
 			num > numberOfPictures - 1 ? num - numberOfPictures : num
@@ -61,7 +63,7 @@ class App extends Component {
 		}, 500);
 	};
 
-	handleClick = (picture, card) => {
+	flipACard = (picture, card) => {
 		const { picture: firstPic, card: firstCard } = this.state.open.first;
 		const secondPic = this.state.open.second.picture;
 
@@ -79,7 +81,8 @@ class App extends Component {
 				open: {
 					...this.state.open,
 					second: { picture, card }
-				}
+				},
+				moves: this.state.moves + 1
 			});
 
 			picture === firstPic && this.givePoint(picture);
@@ -88,20 +91,41 @@ class App extends Component {
 				open: {
 					...this.state.open,
 					first: { picture, card }
+				},
+				moves: this.state.moves + 1
+			});
+		}
+	};
+
+	closeAllCards = e => {
+		// close all cards when user clicks between cards
+
+		if (
+			e.target.id === 'game' &&
+			this.state.open.first.picture &&
+			this.state.open.second.picture
+		) {
+			this.setState({
+				open: {
+					first: { picture: '', card: '' },
+					second: { picture: '', card: '' }
 				}
 			});
 		}
 	};
 
 	render() {
-		const { stack, cards, open, score } = this.state;
+		const { stack, cards, open, score, moves } = this.state;
 		const { picture: firstPicture, card: firstCard } = open.first;
 		const { picture: secondPicture, card: secondCard } = open.second;
 
 		return (
 			<div className="App">
-				<div className="info">Score: {score}</div>
-				<div className="game">
+				<div className="info">
+					<p>Score: {score}</p>
+					<p>Moves: {moves}</p>
+				</div>
+				<div className="game" onClick={this.closeAllCards} id="game">
 					{stack.map((picture, i) => {
 						const card = i + 1;
 						return (
@@ -110,8 +134,8 @@ class App extends Component {
 								className={
 									picture === 'x' ? 'game__card empty-slot' : 'game__card'
 								}
-								onClick={() =>
-									picture !== 'x' && this.handleClick(picture, card)
+								onMouseDown={() =>
+									picture !== 'x' && this.flipACard(picture, card)
 								}
 							>
 								{picture !== 'x' && (
