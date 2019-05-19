@@ -20,18 +20,23 @@ class App extends Component {
 
 	createRandomStack = max => {
 		// create array of random numbers starting from 0 to max
+
 		let arr = [];
+
 		for (let i = 0; arr.length < max; i++) {
 			let num = Math.floor(Math.random() * max);
 			!arr.includes(num) && arr.push(num);
 		}
 		//return only numbers 0-3 in the array
+
 		return arr.map(num => (num > 3 ? num - 4 : num));
 	};
 
 	componentDidMount = () => {
 		//this code is for future when number and source of cards could be changed
+
 		const deck = this.state.cards;
+
 		//duplicate all cards
 		const cards = deck.concat(deck);
 
@@ -52,6 +57,7 @@ class App extends Component {
 		const secondPic = this.state.open.second.picture;
 
 		//check if any cards are already selected and populate "open": first "first" then "second"
+
 		if (firstPic !== '' && secondPic !== '') {
 			this.setState({
 				open: {
@@ -79,12 +85,13 @@ class App extends Component {
 	};
 
 	render() {
-		const { stack, cards, open } = this.state;
+		const { stack, cards, open, score } = this.state;
 		const { picture: firstPicture, card: firstCard } = open.first;
 		const { picture: secondPicture, card: secondCard } = open.second;
 
 		return (
 			<div className="App">
+				<div className="info">Score: {score}</div>
 				<div className="game">
 					{stack.map((picture, i) => {
 						const card = i + 1;
