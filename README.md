@@ -1,5 +1,5 @@
 # Memory game
 
-[PLAY](my-memory-game.netlify.com)
+[PLAY](https://my-memory-game.netlify.com/)
 
 ![game](game.png)
